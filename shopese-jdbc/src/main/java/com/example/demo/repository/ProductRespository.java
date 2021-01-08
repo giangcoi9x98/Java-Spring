@@ -14,9 +14,9 @@ public class ProductRespository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<Product> getAllProduct(int type) {
-        String sql = "call getAllProduct(?);";//id= 1 Sort ASC,orther sort DESC
-        return jdbcTemplate.query(sql, new ProductMapper(), new Object[]{type});
+    public List<Product> getAllProduct(int type,String input) {
+        String sql = "call getAllProduct(?,?);";//id= 1 Sort ASC,orther sort DESC
+        return jdbcTemplate.query(sql, new ProductMapper(), new Object[]{type,input});
     }
 
     public Product getProductById(String id) {

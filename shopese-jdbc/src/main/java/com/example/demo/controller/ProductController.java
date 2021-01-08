@@ -18,8 +18,8 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/product")
-    public ResponseEntity<ResponseForm<List<Product>>> getAll() {
-        List<Product> data = productService.getAllProduct(1);
+    public ResponseEntity<ResponseForm<List<Product>>> getAll(@RequestParam int id,@RequestParam String input) {
+        List<Product> data = productService.getAllProduct(id,input);
         return ResponseEntity.ok(ResponseForm.responseOk(data, 1, "Ok"));
     }
 

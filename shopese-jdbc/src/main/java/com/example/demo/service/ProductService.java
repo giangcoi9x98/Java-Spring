@@ -15,9 +15,9 @@ public class ProductService {
     @Autowired
     ProductRespository productRespository;
 
-    public List<Product> getAllProduct(int type) {
+    public List<Product> getAllProduct(int type,String input) {
         try {
-            return productRespository.getAllProduct(type);
+            return productRespository.getAllProduct(type,input);
         } catch (Exception e) {
             return null;
         }
