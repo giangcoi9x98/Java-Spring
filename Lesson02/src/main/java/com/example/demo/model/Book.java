@@ -1,11 +1,8 @@
 package com.example.demo.model;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Component
 @Entity
 @Table(name = "book")
 public class Book implements Serializable {
