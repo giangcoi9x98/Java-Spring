@@ -14,9 +14,14 @@ public class ProductRespository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<Product> getAllProduct(int type,String input) {
-        String sql = "call getAllProduct(?,?);";//id= 1 Sort ASC,orther sort DESC
-        return jdbcTemplate.query(sql, new ProductMapper(), new Object[]{type,input});
+    public List<Product> getAllProduct(int sort, String sort_by) {
+        String sql = "call getAllProduct(?,?);";
+        return jdbcTemplate.query(sql, new ProductMapper(), new Object[]{sort, sort_by});
+    }
+
+    public List<Product> getAllProduct() {
+        String sql = "Select * from product where isDelete =0;";
+        return jdbcTemplate.query(sql, new ProductMapper(), new Object[]{});
     }
 
     public Product getProductById(String id) {
@@ -28,5 +33,17 @@ public class ProductRespository {
             , int instock) {
         String sql = "call createProduct(?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, display, description, priceOut, priceIn, priceSale, imageUrl, instock);
+    }
+
+    public void updateProduct(Product product) {
+        String sql = "call updateProduct(?,?,?,?,?,?,?,?);";
+        jdbcTemplate.update(sql, product.getProductId(), product.getDisplay(),
+                product.getDescription(), product.getPriceIn(), product.getPriceOut(), product.getPriceSale()
+                , product.getImageUrl(), product.getInstock());
+    }
+
+    public void deleteProduct(String id){
+        String sql="call deleteProduct(?);";
+        jdbcTemplate.update(sql,id);
     }
 }

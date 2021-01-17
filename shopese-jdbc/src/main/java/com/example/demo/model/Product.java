@@ -12,7 +12,7 @@ public class Product {
     private String display;
     private String description ;
     private int priceOut;
-    private int pricaIn;
+    private int priceIn;
     private int priceSale;
     private String imageUrl;
     private int instock;
