@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class ProductRespository {
@@ -31,8 +32,9 @@ public class ProductRespository {
 
     public void createProduct(String display, String description, int priceOut, int priceIn, int priceSale, String imageUrl
             , int instock) {
-        String sql = "call createProduct(?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, display, description, priceOut, priceIn, priceSale, imageUrl, instock);
+        String sql = "call createProduct(?,?,?,?,?,?,?,?)";
+        String id = UUID.randomUUID().toString();
+        jdbcTemplate.update(sql,id, display, description, priceOut, priceIn, priceSale, imageUrl, instock);
     }
 
     public void updateProduct(Product product) {
