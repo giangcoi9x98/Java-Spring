@@ -50,6 +50,15 @@ public class ProductService {
 
     public boolean updateProduct(Product product) {
         try {
+            if(product.getDisplay()==null){
+                product.setDisplay("");
+            }
+            if(product.getDescription()==null){
+                product.setDescription("");
+            }
+            if(product.getImageUrl()==null){
+                product.setImageUrl("");
+            }
             productRespository.updateProduct(product);
             return true;
         } catch (Exception e) {

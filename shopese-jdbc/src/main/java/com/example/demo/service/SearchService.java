@@ -14,7 +14,13 @@ public class SearchService {
 
     public List<Product>search(String keyword){
         try{
-            return searchRepository.search(keyword);
+            String rg ="(?=.*[@#$%^&*(){}/<>?\\\\[\\\\]!,.])";
+            if(keyword.matches(rg)){
+                System.out.println("Keyword khong hop le");
+                return null;
+            }else{
+                return searchRepository.search(keyword);
+            }
         }catch (Exception e){
             System.out.println(e);
             return null;
